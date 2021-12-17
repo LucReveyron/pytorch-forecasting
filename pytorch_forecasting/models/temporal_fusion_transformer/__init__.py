@@ -804,6 +804,6 @@ class TemporalFusionTransformer(BaseModelWithCovariates):
         """
         for name, emb in self.input_embeddings.items():
             labels = self.hparams.embedding_labels[name]
-            self.logger.experiment.add_embedding(
-                emb.weight.data.detach().cpu(), metadata=labels, tag=name, global_step=self.global_step
-            )
+            #self.logger.experiment.log(
+            #    emb.weight.data.detach().cpu(), metadata=labels, tag=name, global_step=self.global_step
+            #)

@@ -707,17 +707,9 @@ class BaseModel(LightningModule):
                     tag += f" of item {idx} in batch {batch_idx}"
                 if isinstance(fig, (list, tuple)):
                     for idx, f in enumerate(fig):
-                        self.logger.experiment.add_figure(
-                            f"{self.target_names[idx]} {tag}",
-                            f,
-                            global_step=self.global_step,
-                        )
+                        self.logger.experiment["prediction/plots/{}/{}".format(self.target_names[idx]), tag].log(f)
                 else:
-                    self.logger.experiment.add_figure(
-                        tag,
-                        fig,
-                        global_step=self.global_step,
-                    )
+                    self.logger.experiment["prediction/plots/{}/{}".format(self.target_names), tag].log(fig)
 
     def plot_prediction(
         self,
